@@ -6,6 +6,7 @@ use App\Http\Controllers\admin\PegawaiController;
 use App\Http\Controllers\admin\PelangganController;
 use App\Http\Controllers\admin\StoreController;
 use App\Http\Controllers\admin\PenggunaController;
+use App\Http\Controllers\admin\PenjualanController;
 use App\Http\Controllers\admin\ProdukController;
 use App\Http\Controllers\admin\ShifkerjaController;
 use Illuminate\Support\Facades\Route;
@@ -50,3 +51,8 @@ Route::get('/pelanggan', [PelangganController::class, 'index'])->name('pelanggan
 Route::post('/pelanggan', [PelangganController::class, 'create'])->name('pelanggan.create');
 Route::put('/pelanggan/{id}', [PelangganController::class, 'update'])->name('pelanggan.update');
 Route::delete('/pelanggan/{id}', [PelangganController::class, 'delete'])->name('pelanggan.delete');
+
+Route::get('/penjualan', [PenjualanController::class, 'index'])->name('penjualan');
+Route::post('/penjualan', [PenjualanController::class, 'create'])->name('penjualan.create');
+Route::put('/penjualan/{id}', [PenjualanController::class, 'update'])->name('penjualan.update');
+Route::delete('/penjualan/{id}', [PenjualanController::class, 'delete'])->name('penjualan.delete');
