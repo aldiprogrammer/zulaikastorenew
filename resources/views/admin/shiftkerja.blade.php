@@ -10,6 +10,7 @@
                 <div class="card-header">
                     <h5>Data {{ $data['title'] }}</h5>
                     <div class="card-header-right">
+                        <a href="" class="btn btn-danger"><i class="fas fa-file text-white"></i> Export PDF</a>
                         <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal">
                             <i class="fas fa-plus text-white"></i> Tambah {{ $data['title'] }}
                         </button>
@@ -25,19 +26,32 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <form class="form-material" method="post" action="{{ route('kategori.create') }}">
+                                        <form class="form-material" method="post" action="{{ route('shiftkerja.create') }}">
                                             @csrf
                                             <div class="form-group form-primary">
-                                                <input type="text" name="kategori" class="form-control" required>
+                                                <input type="text" name="shiftkerja" class="form-control fill" required>
                                                 <span class="form-bar"></span>
-                                                <label class="float-label">Kategori</label>
+                                                <label class="float-label">Shift Kerja</label>
                                             </div>
+
+                                            <div class="form-group form-primary">
+                                                <input type="time" name="jam_masuk" class="form-control fill" required>
+                                                <span class="form-bar"></span>
+                                                <label class="float-label">Jam Masuk</label>
+                                            </div>
+
+                                            <div class="form-group form-primary">
+                                                <input type="time" name="jam_keluar" class="form-control fill" required>
+                                                <span class="form-bar"></span>
+                                                <label class="float-label">Jam Keluar</label>
+                                            </div>
+
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                         <button type="submit" class="btn btn-primary">Simpan</button>
                                     </div>
-                                </form>
+                                    </form>
 
                                 </div>
                             </div>
@@ -51,18 +65,22 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Kategori</th>
+                                    <th>Shift Kerja</th>
+                                    <th>Jam Masuk</th>
+                                    <th>Jam Keluar</th>
                                     <th>Opsi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @php
-                                    $no = 1;
+                                $no = 1;
                                 @endphp
-                                @foreach ($data['kategori'] as $item )
+                                @foreach ($data['shift'] as $item )
                                 <tr>
                                     <th scope="row">{{ $no++ }}</th>
-                                    <td>{{ $item->kategori }}</td>
+                                    <td>{{ $item->shiftkerja }}</td>
+                                    <td>{{ $item->jam_masuk }}</td>
+                                    <td>{{ $item->jam_keluar }}</td>
                                     <td>
                                         <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleEdit{{ $item->id }}">
                                             Edit
@@ -82,15 +100,31 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <form class="form-material" method="post" action="{{ route('kategori.update', $item->id) }}">
+                                                        <form class="form-material" method="post" action="{{ route('shiftkerja.update', $item->id) }}">
                                                             @csrf
                                                             @method('PUT');
-                                                          
-                                                            <div class="form-group form-default form-static-label">
-                                                                <input type="text" name="kategori" class="form-control fill"  value="{{ $item->kategori }}" required>
+
+                                                            <div class="form-group form-primary">
+                                                                <input type="text" name="shiftkerja" value="{{ $item->shiftkerja }}" class="form-control fill" required>
                                                                 <span class="form-bar"></span>
-                                                                <label class="float-label">Kategori</label>
+                                                                <label class="float-label">Shift Kerja</label>
                                                             </div>
+
+                                                            <div class="form-group form-primary">
+                                                                <input type="time" name="jam_masuk" class="form-control fill" value="{{ $item->jam_masuk }}" required>
+
+                                                                <span class="form-bar"></span>
+                                                                <label class="float-label">Jam Masuk</label>
+                                                            </div>
+
+                                                            <div class="form-group form-primary">
+                                                                <input type="time" name="jam_keluar" class="form-control fill" value="{{ $item->jam_keluar }}" required>
+
+                                                                <span class="form-bar"></span>
+                                                                <label class="float-label">Jam Keluar</label>
+                                                            </div>
+
+                
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -108,13 +142,13 @@
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        
+
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <form class="form-material" method="post" action="{{ route('kategori.delete', $item->id) }}">
+                                                        <form class="form-material" method="post" action="{{ route('shiftkerja.delete', $item->id) }}">
                                                             @csrf
                                                             @method('delete')
                                                             <h5 class="text-center text-danger fw-bold"> ☹ Opps</h5>
@@ -132,7 +166,7 @@
                                         </div>
                                         {{-- end hapus --}}
 
-                                      
+
 
 
                                     </td>
@@ -145,7 +179,7 @@
                 </div>
             </div>
 
- 
+
 
         </div>
         <!-- Page-body end -->

@@ -3,9 +3,11 @@
 use App\Http\Controllers\admin\Dashboard;
 use App\Http\Controllers\admin\Kategori;
 use App\Http\Controllers\admin\PegawaiController;
+use App\Http\Controllers\admin\PelangganController;
 use App\Http\Controllers\admin\StoreController;
 use App\Http\Controllers\admin\PenggunaController;
 use App\Http\Controllers\admin\ProdukController;
+use App\Http\Controllers\admin\ShifkerjaController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -18,7 +20,7 @@ Route::post('/kategori', [Kategori::class, 'create'])->name('kategori.create');
 Route::put('/kategori/{id}', [Kategori::class, 'update'])->name('kategori.update');
 Route::delete('/kategori/{id}', [Kategori::class, 'delete'])->name('kategori.delete');
 
-Route::get('/pegawai', [PegawaiController::class, 'index'])->name('pegawai');
+Route::get('/allpegawai', [PegawaiController::class, 'index'])->name('allpegawai');
 Route::get('/pegawai/{id}', [PegawaiController::class, 'index'])->name('pegawai');
 Route::post('/pegawai', [PegawaiController::class, 'create'])->name('pegawai.create');
 Route::put('/pegawai/{id}', [PegawaiController::class, 'update'])->name('pegawai.update');
@@ -38,3 +40,13 @@ Route::get('/produk', [ProdukController::class, 'index'])->name('produk');
 Route::post('/produk', [ProdukController::class, 'create'])->name('produk.create');
 Route::put('/produk/{id}', [ProdukController::class, 'update'])->name('produk.update');
 Route::delete('/produk/{id}', [ProdukController::class, 'delete'])->name('produk.delete');
+
+Route::get('/shiftkerja', [ShifkerjaController::class, 'index'])->name('shiftkerja');
+Route::post('/shiftkerja', [ShifkerjaController::class, 'create'])->name('shiftkerja.create');
+Route::put('/shiftkerja/{id}', [ShifkerjaController::class, 'update'])->name('shiftkerja.update');
+Route::delete('/shiftkerja/{id}', [ShifkerjaController::class, 'delete'])->name('shiftkerja.delete');
+
+Route::get('/pelanggan', [PelangganController::class, 'index'])->name('pelanggan');
+Route::post('/pelanggan', [PelangganController::class, 'create'])->name('pelanggan.create');
+Route::put('/pelanggan/{id}', [PelangganController::class, 'update'])->name('pelanggan.update');
+Route::delete('/pelanggan/{id}', [PelangganController::class, 'delete'])->name('pelanggan.delete');

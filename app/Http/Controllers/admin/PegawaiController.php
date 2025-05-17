@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Pegawai;
+use App\Models\Shiftkerja;
 use App\Models\Store;
 use Illuminate\Http\Request;
 
@@ -13,18 +14,20 @@ class PegawaiController extends Controller
     function index($id = null)
     {
         if ($id == null) {
-            $pegawai = Pegawai::with('store')->get();
+            $pegawai = Pegawai::with('store', 'shiftkerja')->get();
         } else {
 
-            $pegawai = Pegawai::with('store')->where('id_store', $id)->get();
+            $pegawai = Pegawai::with('store', 'shiftkerja')->where('id_store', $id)->get();
         }
 
 
         $store = Store::all();
+        $shift = Shiftkerja::all();
         $data = [
             'title' => 'Pegawai',
             'pegawai' => $pegawai,
             'store' => $store,
+            'shift' => $shift,
         ];
         return view('admin.pegawai', compact('data'));
     }
@@ -61,9 +64,10 @@ class PegawaiController extends Controller
             $pegawai->jenis_kelamin = $request->jenis_kelamin;
             $pegawai->tgl_masuk = $request->tgl_masuk;
             $pegawai->id_store = $request->id_store;
+            $pegawai->id_shiftkerja = $request->shift;
             $pegawai->foto = '';
             $pegawai->save();
-            return redirect()->route('pegawai')->with('success', 'Data Pegawai Berhasil Ditambahkan');
+            return redirect()->route('allpegawai')->with('success', 'Data Pegawai Berhasil Ditambahkan');
         }
     }
 
@@ -80,9 +84,10 @@ class PegawaiController extends Controller
         $pegawai->jenis_kelamin = $request->jenis_kelamin;
         $pegawai->tgl_masuk = $request->tgl_masuk;
         $pegawai->id_store = $request->id_store;
+        $pegawai->id_shiftkerja = $request->shift;
         $pegawai->foto = '';
         $pegawai->update();
-        return redirect()->route('pegawai')->with('success', 'Data Pegawai Berhasil Diubah');
+        return redirect()->route('allpegawai')->with('success', 'Data Pegawai Berhasil Diubah');
     }
 
 
@@ -90,6 +95,6 @@ class PegawaiController extends Controller
     {
         $pegawai = Pegawai::find($id);
         $pegawai->delete();
-        return redirect()->route('pegawai')->with('success', 'Data Pegawai Berhasil Dihapus');
+        return redirect()->route('allpegawai')->with('success', 'Data Pegawai Berhasil Dihapus');
     }
 }

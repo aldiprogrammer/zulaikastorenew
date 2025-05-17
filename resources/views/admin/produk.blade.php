@@ -9,6 +9,7 @@
                     <div class="card-header">
                         <h5>Data {{ $data['title'] }}</h5>
                         <div class="card-header-right">
+                            <button class="btn btn-danger"><i class="fas fa-file text-white"></i> Export PDF</button>
                             <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
                                 data-target="#exampleModal">
                                 <i class="fas fa-plus text-white"></i> Tambah {{ $data['title'] }}
@@ -135,7 +136,7 @@
                                         <tr>
                                             <th scope="row">{{ $no++ }}</th>
                                             <td>{{ $item->nama_produk }}</td>
-                                            <td>{{ $item->id_kategori }}</td>
+                                            <td>{{ $item->kategori->kategori }}</td>
                                             <td>{{ $item->ukuran }}</td>
                                             <td>{{ $item->stok }}</td>
                                             <td>{{ $item->harga_beli }}</td>
@@ -169,41 +170,73 @@
                                                             </div>
                                                             <div class="modal-body">
                                                                 <form class="form-material" method="post"
-                                                                    action="{{ route('pengguna.update', $item->id) }}">
+                                                                    action="{{ route('produk.update', $item->id) }}">
                                                                     @csrf
                                                                     @method('PUT');
+                                                                    
+                                                                    <div class="form-group form-primary">
+                                                                        <input type="text" name="kode_produk" disabled class="form-control fill" required value="{{ $item->kode_produk }}">
+                                                                        <span class="form-bar"></span>
+                                                                        <label class="float-label">Kode Produk</label>
+                                                                    </div>
+
 
                                                                     <div class="form-group form-primary">
-                                                                        <input type="text" name="username"
-                                                                            class="form-control fill"
-                                                                            value="{{ $item->username }}" required>
+                                                                        <input type="text" name="nama_produk" class="form-control fill" required value="{{ $item->nama_produk }}">
                                                                         <span class="form-bar"></span>
-                                                                        <label class="float-label">Username</label>
+                                                                        <label class="float-label">Nama Produk</label>
                                                                     </div>
 
                                                                     <div class="form-group form-primary">
-                                                                        <select name="level" class="form-control fill"
-                                                                            id="">
-                                                                            <option>{{ $item->level }}
+                                                                        <input type="text" name="ukuran" class="form-control fill" required value="{{ $item->ukuran }}">
+                                                                        <span class="form-bar"></span>
+                                                                        <label class="float-label">Ukuran</label>
+                                                                    </div>
+
+
+                                                                    <div class="form-group form-primary">
+                                                                        <select name="id_kategori" class="form-control fill" id="">
+                                                                            <option value="{{ $item->id_kategori }}">{{ $item->kategori->kategori }}</option>
+                                                                            @foreach ($data['kategori'] as $item2)
+                                                                            <option value="{{ $item2->id }}">{{ $item2->kategori }}
                                                                             </option>
-                                                                            <option value="kasir">Kasir</option>
-                                                                            <option value="admin">Admin</option>
-                                                                            <option value="super admin">Super Admin
-                                                                            </option>
+                                                                            @endforeach
                                                                         </select>
                                                                         <span class="form-bar"></span>
-                                                                        <label class="float-label">Level</label>
+                                                                        <label class="float-label">Kategori</label>
                                                                     </div>
 
                                                                     <div class="form-group form-primary">
-                                                                        <input type="password" name="password"
-                                                                            class="form-control fill">
+                                                                        <input type="number" name="harga_beli" class="form-control fill" required value="{{ $item->harga_beli }}">
                                                                         <span class="form-bar"></span>
-                                                                        <label class="float-label">Password Baru</label>
-                                                                        <small>Kosongkan password jika tidak ingin merubah
-                                                                            password lama</small>
+                                                                        <label class="float-label">Harga Beli</label>
                                                                     </div>
 
+                                                                    <div class="form-group form-primary">
+                                                                        <input type="number" name="harga_jual" class="form-control fill" required value="{{ $item->harga_jual }}">
+                                                                        <span class="form-bar"></span>
+                                                                        <label class="float-label">Harga Jual</label>
+                                                                    </div>
+
+                                                                    <div class="form-group form-primary">
+                                                                        <input type="number" name="diskon" class="form-control fill" required value="{{ $item->diskon }}">
+                                                                        <span class="form-bar"></span>
+                                                                        <label class="float-label">Diskon</label>
+                                                                    </div>
+
+                                                                    <div class="form-group form-primary">
+                                                                        <input type="number" name="stok" class="form-control fill" required value="{{ $item->stok }}">
+                                                                        <span class="form-bar"></span>
+                                                                        <label class="float-label">Stok</label>
+                                                                    </div>
+
+                                                                    <div class="form-group form-primary">
+                                                                        <input type="text" name="tgl_masuk" class="form-control fill" value="{{ $item->tgl_masuk }}" required>
+                                                                        <span class="form-bar"></span>
+                                                                        <label class="float-label">Tgl Masuk</label>
+                                                                    </div>
+
+                                                                   
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary"
@@ -218,7 +251,7 @@
                                                 </div>
                                                 {{-- end edit --}}
 
-                                                <!-- Modal edit -->
+                                                <!-- Modal hapus -->
                                                 <div class="modal fade" id="exampleHapus{{ $item->id }}"
                                                     tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                                                     aria-hidden="true">

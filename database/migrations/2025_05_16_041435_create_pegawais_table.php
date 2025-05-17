@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('foto', 100);
             $table->datetime('tgl_masuk');
             $table->string('id_store', 2);
+            $table->string('id_shiftkerja', 10);
             $table->timestamps();
         });
     }

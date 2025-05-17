@@ -40,7 +40,7 @@
                                                         <option value="">-- Pilih Level --</option>
                                                         <option value="kasir">Kasir</option>
                                                         <option value="admin">Admin</option>
-                                                        <option value="super admin">Super Admin</option>
+                                                        <option value="super admin">Owner</option>
                                                     </select>
                                                     <span class="form-bar"></span>
                                                     <label class="float-label">Level</label>
@@ -159,7 +159,7 @@
                                                 </div>
                                                 {{-- end edit --}}
 
-                                                <!-- Modal edit -->
+                                                <!-- Modal hapus -->
                                                 <div class="modal fade" id="exampleHapus{{ $item->id }}"
                                                     tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                                                     aria-hidden="true">

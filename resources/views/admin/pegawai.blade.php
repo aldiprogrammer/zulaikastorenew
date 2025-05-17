@@ -9,12 +9,12 @@
                     <div class="card-header">
                         <h5>Data {{ $data['title'] }}</h5>
                         <div class="card-header-right">
-                            <a href="/pegawai" class="btn btn-info">All</a>
+                            <a href="" class="btn btn-danger"> <i class="fas fa-file text-white"></i> Export PDF</a>
+                            <a href="/allpegawai" class="btn btn-info">All</a>
                             @foreach ($data['store'] as $item)
                                 <a href="{{ route('pegawai', ['id' => $item->id]) }}"
                                     class="btn btn-info">{{ $item->store }}</a>
                             @endforeach
-
 
                             <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
                                 data-target="#exampleModal">
@@ -80,8 +80,19 @@
                                                         placeholder="Tanggal masuk" required>
                                                     <span class="form-bar"></span>
                                                     <label class="float-label">Tanggal Masuk</label>
-
                                                 </div>
+
+                                                <div class="form-group form-primary">
+                                                    <select name="shift" id="" class="form-control fill" required>
+                                                        <option value="">-- Pilih Shift kerja -- </option>
+                                                        @foreach ($data['shift'] as $ss)
+                                                        <option value="{{ $ss->id }}">{{ $ss->shiftkerja }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    <span class="form-bar"></span>
+                                                    <label class="float-label">Shift Kerja</label>
+                                                </div>
+
 
                                                 <div class="form-group form-primary">
                                                     <select name="id_store" id="" class="form-control fill"
@@ -99,7 +110,7 @@
                                                 <div class="form-group form-primary">
                                                     <textarea class="form-control" name="alamat" required></textarea>
                                                     <span class="form-bar"></span>
-                                                    <label class="float-label">Alamat</label>
+                                                    <label class="float-label">Alamat Pegawai</label>
                                                 </div>
 
                                         </div>
@@ -126,6 +137,7 @@
                                         <th>Nik</th>
                                         <th>No Wa</th>
                                         <th>Store</th>
+                                        <th>Shift</th>
                                         <th>Foto</th>
                                         <th>Opsi</th>
                                     </tr>
@@ -141,6 +153,7 @@
                                             <td>{{ $item->nik }}</td>
                                             <td>{{ $item->nowa }}</td>
                                             <td>{{ $item->store->store }}</td>
+                                            <td>{{ $item->shiftkerja->shiftkerja }}</td>
                                             <td>{{ $item->foto }}</td>
                                             <td>
                                                 <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
@@ -228,14 +241,26 @@
                                                                     </div>
 
                                                                     <div class="form-group form-primary">
+                                                                        <select name="shift" id="" class="form-control fill" required>
+                                                                            <option value="{{ $item->id_shiftkerja }}">{{ $item->shiftkerja->shiftkerja }}</option>
+                                                                            @foreach ($data['shift'] as $ss)
+                                                                            <option value="{{ $ss->id }}">{{ $ss->shiftkerja }}</option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                        <span class="form-bar"></span>
+                                                                        <label class="float-label">Shift Kerja</label>
+                                                                    </div>
+
+
+                                                                    <div class="form-group form-primary">
                                                                         <select name="id_store" id=""
                                                                             class="form-control fill" required>
                                                                             <option value="{{ $item->store->id }}">
                                                                                 {{ $item->store->store }}
                                                                             </option>
-                                                                            @foreach ($data['store'] as $item)
-                                                                                <option value="{{ $item->id }}">
-                                                                                    {{ $item->store }}</option>
+                                                                            @foreach ($data['store'] as $item2)
+                                                                                <option value="{{ $item2->id }}">
+                                                                                    {{ $item2->store }}</option>
                                                                             @endforeach
                                                                         </select>
                                                                         <span class="form-bar"></span>
@@ -245,7 +270,7 @@
                                                                     <div class="form-group form-primary">
                                                                         <textarea class="form-control fill" name="alamat" required>{{ $item->alamat }}</textarea>
                                                                         <span class="form-bar"></span>
-                                                                        <label class="float-label">Alamat</label>
+                                                                        <label class="float-label">Alamat Pegawai</label>
                                                                     </div>
 
 
@@ -264,7 +289,7 @@
                                                 </div>
                                                 {{-- end edit --}}
 
-                                                <!-- Modal edit -->
+                                                <!-- Modal hapus -->
                                                 <div class="modal fade" id="exampleHapus{{ $item->id }}"
                                                     tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                                                     aria-hidden="true">

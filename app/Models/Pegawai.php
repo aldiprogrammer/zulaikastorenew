@@ -11,15 +11,24 @@ class Pegawai extends Model
         'nama',
         'jenis_kelamin',
         'nowa',
-        // 'foto',
+        'foto',
         'alamat',
         'nik',
-        'tgl_masuk'
+        'tgl_masuk',
+        'id_shiftkerja',
+        'id_store',
+        'email',
     ];
 
 
     public function store()
     {
         return $this->belongsTo(Store::class, 'id_store');
+    }
+
+
+    public function shiftkerja()
+    {
+        return $this->belongsTo(Shiftkerja::class, 'id_shiftkerja');
     }
 }

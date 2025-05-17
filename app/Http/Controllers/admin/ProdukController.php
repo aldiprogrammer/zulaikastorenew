@@ -12,7 +12,7 @@ class ProdukController extends Controller
 
     function index()
     {
-        $produk = Produk::all();
+        $produk = Produk::with('kategori')->get();
         $kt = Kategori::all();
         $kode = 'PRD-' . rand(0, 100000);
         $data = [
@@ -46,7 +46,6 @@ class ProdukController extends Controller
     function update(Request $request, $id)
     {
         $pr = Produk::find($id);
-        $pr->kode_produk = $request->kode_produk;
         $pr->nama_produk = $request->nama_produk;
         $pr->ukuran = $request->ukuran;
         $pr->stok = $request->stok;
