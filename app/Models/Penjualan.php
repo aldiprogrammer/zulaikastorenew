@@ -17,4 +17,10 @@ class Penjualan extends Model
         'tanggal',
         'id_pengguna'
     ];
+
+
+    public function produk()
+    {
+        return $this->belongsTo(Produk::class, 'id_produk');
+    }
 }

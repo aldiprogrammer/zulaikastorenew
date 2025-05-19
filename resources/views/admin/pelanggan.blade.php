@@ -45,6 +45,9 @@
                                                 <input type="number" name="nik" class="form-control" required>
                                                 <span class="form-bar"></span>
                                                 <label class="float-label">NIK</label>
+                                                @error('nik')
+                                                <small class="text-danger">{{ $message }}</small>
+                                                @enderror
                                             </div>
 
                                             <div class="form-group form-primary">
@@ -68,6 +71,10 @@
                                                 <input type="number" name="no_telp" class="form-control" required>
                                                 <span class="form-bar"></span>
                                                 <label class="float-label">No Telp</label>
+                                                @error('no_Telp')
+                                                <small class="text-danger">{{ $message }}</small>
+                                                @enderror
+
                                             </div>
 
                                             <div class="form-group form-primary">
@@ -89,6 +96,19 @@
 
                     </div>
                 </div>
+                @if ($errors->any())
+                <div class="container mt-4">
+                    <div class="alert alert-danger" role="alert">
+                        <div class="text-danger fw-bold">Mohon maaf tambah pelanggan gagal, masukan data dengan benar</div>
+                        <ul>
+                            @foreach ($errors->all() as $error )
+                            <li>- {{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+                @endif
+
                 <div class="card-block table-border-style">
                     <div class="table-responsive">
                         <table class="table">
@@ -139,29 +159,63 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <form class="form-material" method="post" action="{{ route('shiftkerja.update', $item->id) }}">
+                                                        <form class="form-material" method="post" action="{{ route('pelanggan.update', $item->id) }}">
                                                             @csrf
                                                             @method('PUT');
 
                                                             <div class="form-group form-primary">
-                                                                <input type="text" name="shiftkerja" value="{{ $item->shiftkerja }}" class="form-control fill" required>
+                                                                <input type="text" name="kode" class="form-control fill" value="{{ $item->kode_pelanggan }}" readonly required value="{{ $data['kode'] }}">
                                                                 <span class="form-bar"></span>
-                                                                <label class="float-label">Shift Kerja</label>
+                                                                <label class="float-label">Kode</label>
                                                             </div>
 
                                                             <div class="form-group form-primary">
-                                                                <input type="time" name="jam_masuk" class="form-control fill" value="{{ $item->jam_masuk }}" required>
-
+                                                                <input type="text" name="nama" class="form-control fill" value="{{ $item->nama }}" required>
                                                                 <span class="form-bar"></span>
-                                                                <label class="float-label">Jam Masuk</label>
+                                                                <label class="float-label">Nama</label>
                                                             </div>
 
                                                             <div class="form-group form-primary">
-                                                                <input type="time" name="jam_keluar" class="form-control fill" value="{{ $item->jam_keluar }}" required>
-
+                                                                <input type="number" name="nik" class="form-control fill" value="{{ $item->nik }}" required>
                                                                 <span class="form-bar"></span>
-                                                                <label class="float-label">Jam Keluar</label>
+                                                                <label class="float-label">NIK</label>
+                                                                @error('nik')
+                                                                <small class="text-danger">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
+
+                                                            <div class="form-group form-primary">
+                                                                <select name="jk" class="form-control fill" id="" required>
+                                                                    <option>{{ $item->jenis_kelamin }}</option>
+                                                                    <option>Laki-Laki</option>
+                                                                    <option>Perempuan</option>
+                                                                </select>
+                                                                <span class="form-bar"></span>
+                                                                <label class="float-label">Jenis Kelamin</label>
+                                                            </div>
+
+                                                            <div class="form-group form-primary">
+                                                                <textarea name="alamat" id="" class="form-control fill" required>{{ $item->alamat }}</textarea>
+                                                                <span class="form-bar"></span>
+                                                                <label class="float-label">Alamat Pelanggan</label>
+                                                            </div>
+
+                                                            <div class="form-group form-primary">
+                                                                <input type="number" name="no_telp" value="{{ $item->no_telp }}" class="form-control fill" required>
+                                                                <span class="form-bar"></span>
+                                                                <label class="float-label">No Telp</label>
+                                                                @error('no_Telp')
+                                                                <small class="text-danger">{{ $message }}</small>
+                                                                @enderror
+
+                                                            </div>
+
+                                                            <div class="form-group form-primary">
+                                                                <input type="date" name="tgl_daftar" value="{{ $item->tgl_daftar }}" class="form-control fill" required>
+                                                                <span class="form-bar"></span>
+                                                                <label class="float-label">Tanggal Daftar</label>
+                                                            </div>
+
 
 
                                                     </div>
@@ -187,7 +241,7 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <form class="form-material" method="post" action="{{ route('shiftkerja.delete', $item->id) }}">
+                                                        <form class="form-material" method="post" action="{{ route('pelanggan.delete', $item->id) }}">
                                                             @csrf
                                                             @method('delete')
                                                             <h5 class="text-center text-danger fw-bold"> ☹ Opps</h5>

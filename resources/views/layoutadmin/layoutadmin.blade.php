@@ -499,6 +499,7 @@
 
     <script type="text/javascript" src="{{ asset('') }}assets/admin/js/script.js "></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('') }}assets/admin/js/app.js"></script>
     @if (session('success'))
     <script>
         Swal.fire({
@@ -509,6 +510,18 @@
 
     </script>
     @endif
+
+    @if (session('error'))
+    <script>
+        Swal.fire({
+            title: "Opps"
+            , text: "{{ session('error') }}"
+            , icon: "error"
+        });
+
+    </script>
+    @endif
+
 
 </body>
 

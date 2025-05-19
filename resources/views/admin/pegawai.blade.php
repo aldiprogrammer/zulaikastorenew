@@ -58,6 +58,9 @@
                                                     <input type="number" name="nowa" class="form-control" required>
                                                     <span class="form-bar"></span>
                                                     <label class="float-label">No Whatsapp</label>
+                                                    @error('nowa')
+                                                    <small class="text-danger">{{ $message }}</small>
+                                                    @enderror
 
                                                 </div>
 
@@ -65,7 +68,9 @@
                                                     <input type="number" name="nik" class="form-control" required>
                                                     <span class="form-bar"></span>
                                                     <label class="float-label">Nik</label>
-
+                                                    @error('nik')
+                                                        <small class="text-danger">{{ $message }}</small>
+                                                    @enderror
                                                 </div>
 
                                                 <div class="form-group form-primary">
@@ -127,6 +132,18 @@
 
                         </div>
                     </div>
+                @if ($errors->any())
+                <div class="container mt-4">
+                    <div class="alert alert-danger" role="alert">
+                        <div class="text-danger fw-bold">Mohon maaf tambah pegawai gagal, masukan data dengan benar</div>
+                        <ul>
+                            @foreach ($errors->all() as $error )
+                            <li>- {{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+                @endif
                     <div class="card-block table-border-style">
                         <div class="table-responsive">
                             <table class="table">
@@ -211,7 +228,9 @@
                                                                             value="{{ $item->nowa }}">
                                                                         <span class="form-bar"></span>
                                                                         <label class="float-label">No Whatsapp</label>
-
+                                                                        @error('nowa')
+                                                                        <small class="text-danger">{{ $message }}</small>
+                                                                        @enderror
                                                                     </div>
 
                                                                     <div class="form-group form-primary">
@@ -220,6 +239,9 @@
                                                                             value="{{ $item->nik }}">
                                                                         <span class="form-bar"></span>
                                                                         <label class="float-label">Nik</label>
+                                                                        @error('nik')
+                                                                        <small class="text-danger">{{ $message }}</small>
+                                                                        @enderror
 
                                                                     </div>
 
