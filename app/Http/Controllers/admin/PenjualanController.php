@@ -27,8 +27,8 @@ class PenjualanController extends Controller
         $idproduk = $request->id_produk;
         $produk = Produk::where('id', $idproduk)->first();
         $idproduk = $produk->id;
-        if ($produk->qty > $request->qty) {
-            return redirect()->route('penjualan')->with('error', 'Stok tidak mencukupi');
+        if ($produk->stok < $request->qty) {
+            return redirect()->route('penjualan')->with('error', 'Stok produk tidak mencukupi');
         } else {
 
             $qty = $produk->stok - $request->qty;

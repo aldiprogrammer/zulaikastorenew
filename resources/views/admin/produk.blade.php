@@ -28,7 +28,7 @@
                                         </div>
                                         <div class="modal-body">
                                             <form class="form-material" method="post"
-                                                action="{{ route('produk.create') }}">
+                                                action="{{ route('produk.create') }}" enctype="multipart/form-data">
                                                 @csrf
 
                                                 <div class="form-group form-primary">
@@ -94,7 +94,14 @@
                                                     <label class="float-label">Tgl Masuk</label>
                                                 </div>
 
-
+                                                <div class="form-group form-primary">
+                                                    <input type="file" name="foto" class="form-control fill" required>
+                                                    <span class="form-bar"></span>
+                                                    <label class="float-label">Foto Produk</label>
+                                                    @error('foto')
+                                                        <small class="text-danger">{{ $message }}</small>
+                                                    @enderror
+                                                </div>
 
                                         </div>
                                         <div class="modal-footer">
@@ -139,11 +146,12 @@
                                             <td>{{ $item->kategori->kategori }}</td>
                                             <td>{{ $item->ukuran }}</td>
                                             <td>{{ $item->stok }}</td>
-                                            <td>{{ $item->harga_beli }}</td>
-                                            <td>{{ $item->harga_jual }}</td>
-                                            <td>{{ $item->diskon }}</td>
+                                            <td>{{ number_format($item->harga_beli, '0', '.') }}</td>
+                                            <td>{{number_format($item->harga_jual, '0', '.')  }}</td>
+                                            <td>{{ $item->diskon }}%</td>
                                             <td>{{ $item->tgl_masuk }}</td>
-                                            <td>{{ $item->foto }}</td>
+                                            <td><img src="{{ asset('storage/'.$item->foto) }}" alt="Gambar" width="50"></td>
+
                                             <td>
                                                 <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
                                                     data-target="#exampleEdit{{ $item->id }}">
@@ -170,7 +178,7 @@
                                                             </div>
                                                             <div class="modal-body">
                                                                 <form class="form-material" method="post"
-                                                                    action="{{ route('produk.update', $item->id) }}">
+                                                                    action="{{ route('produk.update', $item->id) }}" enctype="multipart/form-data">
                                                                     @csrf
                                                                     @method('PUT');
                                                                     
@@ -235,6 +243,17 @@
                                                                         <span class="form-bar"></span>
                                                                         <label class="float-label">Tgl Masuk</label>
                                                                     </div>
+
+                                                                    <div class="form-group form-primary">
+                                                                        <input type="file" name="foto" class="form-control fill">
+                                                                        <span class="form-bar"></span>
+                                                                        <label class="float-label">Foto Produk</label>
+                                                                        @error('foto')
+                                                                        <small class="text-danger">{{ $message }}</small>
+                                                                        @enderror
+                                                                        <div>Kosongkan foto produk jika tidak ingin merubah foto sebelumnya</div>
+                                                                    </div>
+
 
                                                                    
                                                             </div>
