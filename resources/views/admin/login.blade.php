@@ -1,12 +1,14 @@
 <html lang="en">
+
 <head>
     <title>Login</title>
-  
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <meta name="keywords" content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive">
+    <meta name="keywords"
+        content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive">
     <meta name="author" content="Codedthemes">
     <!-- Favicon icon -->
 
@@ -16,7 +18,8 @@
     <!-- Required Fremwork -->
     <link rel="stylesheet" type="text/css" href="{{ asset('/') }}assets/admin/css/bootstrap/css/bootstrap.min.css">
     <!-- waves.css -->
-    <link rel="stylesheet" href="{{ asset('/') }}assets/admin/pages/waves/css/waves.min.css" type="text/css" media="all">
+    <link rel="stylesheet" href="{{ asset('/') }}assets/admin/pages/waves/css/waves.min.css" type="text/css"
+        media="all">
 
     <!-- themify-icons line icon -->
     <link rel="stylesheet" type="text/css" href="{{ asset('/') }}assets/admin/icon/themify-icons/themify-icons.css">
@@ -24,7 +27,8 @@
     <!-- ico font -->
     <link rel="stylesheet" type="text/css" href="{{ asset('/') }}assets/admin/icon/icofont/css/icofont.css">
     <!-- Font Awesome -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('/') }}assets/admin/icon/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('/') }}assets/admin/icon/font-awesome/css/font-awesome.min.css">
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="{{ asset('/') }}assets/admin/css/style.css">
 </head>
@@ -44,24 +48,23 @@
 
 
                     <form class="md-float-material form-material" method="post" action="{{ route('act_login') }}">
-                            @csrf
+                        @csrf
                         <div class="text-center">
                             {{-- <img src="{{ asset('/') }}assets/admin/images/logo.png" alt="logo.png"> --}}
                             <h4 class="text-white" style="font-weight: bold">ZULAIKA STORE</h4>
                         </div>
                         <div class="auth-box card">
-                           
+
                             <div class="card-block">
                                 @if (session('error'))
-                                <div class="alert alert-danger text-center" role="alert">
-                                    ⚠️ {{ session('error') }}
-                                    <br />
-                                    Masukan username dan password dengan benar
-                                </div>
-
+                                    <div class="alert alert-danger text-center text-white bg-danger" role="alert">
+                                        ⚠️ {{ session('error') }}
+                                        <br />
+                                        Masukan username dan password dengan benar
+                                    </div>
                                 @endif
 
-    
+
                                 <div class="row m-b-20">
                                     <div class="col-md-12">
                                         <h3 class="text-center">Login</h3>
@@ -82,7 +85,8 @@
                                         <div class="checkbox-fade fade-in-primary d-">
                                             <label>
                                                 <input type="checkbox" value="">
-                                                <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
+                                                <span class="cr"><i
+                                                        class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
                                                 <span class="text-inverse">Remember me</span>
                                             </label>
                                         </div>
@@ -93,7 +97,8 @@
                                 </div>
                                 <div class="row m-t-30">
                                     <div class="col-md-12">
-                                        <button type="submit" class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20">Sign in</button>
+                                        <button type="submit"
+                                            class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20">Login</button>
                                     </div>
                                 </div>
                                 <hr>
@@ -170,10 +175,12 @@
     <!-- waves js -->
     <script src="{{ asset('/') }}assets/admin/pages/waves/js/waves.min.js"></script>
     <!-- jquery slimscroll js -->
-    <script type="text/javascript" src="{{ asset('/') }}assets/admin/js/jquery-slimscroll/jquery.slimscroll.js"></script>
+    <script type="text/javascript" src="{{ asset('/') }}assets/admin/js/jquery-slimscroll/jquery.slimscroll.js">
+    </script>
     <script type="text/javascript" src="{{ asset('/') }}assets/admin/js/common-pages.js"></script>
 
 
 
 </body>
+
 </html>

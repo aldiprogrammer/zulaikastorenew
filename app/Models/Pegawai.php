@@ -17,6 +17,7 @@ class Pegawai extends Model
         'tgl_masuk',
         'id_shiftkerja',
         'id_store',
+        'id_jabatan',
         'email',
     ];
 
