@@ -59,7 +59,7 @@
                                                     <span class="form-bar"></span>
                                                     <label class="float-label">No Whatsapp</label>
                                                     @error('nowa')
-                                                    <small class="text-danger">{{ $message }}</small>
+                                                        <small class="text-danger">{{ $message }}</small>
                                                     @enderror
 
                                                 </div>
@@ -88,10 +88,12 @@
                                                 </div>
 
                                                 <div class="form-group form-primary">
-                                                    <select name="shift" id="" class="form-control fill" required>
+                                                    <select name="shift" id="" class="form-control fill"
+                                                        required>
                                                         <option value="">-- Pilih Shift kerja -- </option>
                                                         @foreach ($data['shift'] as $ss)
-                                                        <option value="{{ $ss->id }}">{{ $ss->shiftkerja }}</option>
+                                                            <option value="{{ $ss->id }}">{{ $ss->shiftkerja }}
+                                                            </option>
                                                         @endforeach
                                                     </select>
                                                     <span class="form-bar"></span>
@@ -104,13 +106,26 @@
                                                         required>
                                                         <option value="">-- Pilih Store -- </option>
                                                         @foreach ($data['store'] as $item)
-                                                            <option value="{{ $item->id }}">{{ $item->store }}</option>
+                                                            <option value="{{ $item->id }}">{{ $item->store }}
+                                                            </option>
                                                         @endforeach
                                                     </select>
                                                     <span class="form-bar"></span>
                                                     <label class="float-label">Store</label>
                                                 </div>
 
+                                                <div class="form-group form-primary">
+                                                    <select name="jabatan" id="" class="form-control fill"
+                                                        required>
+                                                        <option value="">-- Pilih Jabatan -- </option>
+                                                        @foreach ($data['jabatan'] as $jab)
+                                                            <option value="{{ $jab->id }}">{{ $jab->jabatan }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                    <span class="form-bar"></span>
+                                                    <label class="float-label">Jabatan</label>
+                                                </div>
 
                                                 <div class="form-group form-primary">
                                                     <textarea class="form-control" name="alamat" required></textarea>
@@ -132,18 +147,19 @@
 
                         </div>
                     </div>
-                @if ($errors->any())
-                <div class="container mt-4">
-                    <div class="alert alert-danger" role="alert">
-                        <div class="text-danger fw-bold">Mohon maaf tambah pegawai gagal, masukan data dengan benar</div>
-                        <ul>
-                            @foreach ($errors->all() as $error )
-                            <li>- {{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
-                @endif
+                    @if ($errors->any())
+                        <div class="container mt-4">
+                            <div class="alert alert-danger" role="alert">
+                                <div class="text-danger fw-bold">Mohon maaf tambah pegawai gagal, masukan data dengan benar
+                                </div>
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>- {{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    @endif
                     <div class="card-block table-border-style">
                         <div class="table-responsive">
                             <table class="table">
@@ -155,6 +171,7 @@
                                         <th>No Wa</th>
                                         <th>Store</th>
                                         <th>Shift</th>
+                                        <th>Jabatan</th>
                                         <th>Foto</th>
                                         <th>Opsi</th>
                                     </tr>
@@ -171,6 +188,7 @@
                                             <td>{{ $item->nowa }}</td>
                                             <td>{{ $item->store->store }}</td>
                                             <td>{{ $item->shiftkerja->shiftkerja }}</td>
+                                            <td>{{ $item->jabatan->jabatan }}</td>
                                             <td>{{ $item->foto }}</td>
                                             <td>
                                                 <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
@@ -229,7 +247,8 @@
                                                                         <span class="form-bar"></span>
                                                                         <label class="float-label">No Whatsapp</label>
                                                                         @error('nowa')
-                                                                        <small class="text-danger">{{ $message }}</small>
+                                                                            <small
+                                                                                class="text-danger">{{ $message }}</small>
                                                                         @enderror
                                                                     </div>
 
@@ -240,7 +259,8 @@
                                                                         <span class="form-bar"></span>
                                                                         <label class="float-label">Nik</label>
                                                                         @error('nik')
-                                                                        <small class="text-danger">{{ $message }}</small>
+                                                                            <small
+                                                                                class="text-danger">{{ $message }}</small>
                                                                         @enderror
 
                                                                     </div>
@@ -263,10 +283,14 @@
                                                                     </div>
 
                                                                     <div class="form-group form-primary">
-                                                                        <select name="shift" id="" class="form-control fill" required>
-                                                                            <option value="{{ $item->id_shiftkerja }}">{{ $item->shiftkerja->shiftkerja }}</option>
+                                                                        <select name="shift" id=""
+                                                                            class="form-control fill" required>
+                                                                            <option value="{{ $item->id_shiftkerja }}">
+                                                                                {{ $item->shiftkerja->shiftkerja }}
+                                                                            </option>
                                                                             @foreach ($data['shift'] as $ss)
-                                                                            <option value="{{ $ss->id }}">{{ $ss->shiftkerja }}</option>
+                                                                                <option value="{{ $ss->id }}">
+                                                                                    {{ $ss->shiftkerja }}</option>
                                                                             @endforeach
                                                                         </select>
                                                                         <span class="form-bar"></span>
@@ -287,6 +311,22 @@
                                                                         </select>
                                                                         <span class="form-bar"></span>
                                                                         <label class="float-label">Store</label>
+                                                                    </div>
+
+                                                                    <div class="form-group form-primary">
+                                                                        <select name="jabatan" id=""
+                                                                            class="form-control fill" required>
+                                                                            <option value="{{ $item->id_jabatan }}">
+                                                                                {{ $item->jabatan->jabatan }}
+                                                                            </option>
+                                                                            @foreach ($data['jabatan'] as $jab)
+                                                                                <option value="{{ $jab->id }}">
+                                                                                    {{ $jab->jabatan }}
+                                                                                </option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                        <span class="form-bar"></span>
+                                                                        <label class="float-label">Jabatan</label>
                                                                     </div>
 
                                                                     <div class="form-group form-primary">

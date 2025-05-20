@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Jabatan;
 use App\Models\Pegawai;
 use App\Models\Shiftkerja;
 use App\Models\Store;
@@ -14,10 +15,10 @@ class PegawaiController extends Controller
     function index($id = null)
     {
         if ($id == null) {
-            $pegawai = Pegawai::with('store', 'shiftkerja')->get();
+            $pegawai = Pegawai::with('store', 'shiftkerja', 'jabatan')->get();
         } else {
 
-            $pegawai = Pegawai::with('store', 'shiftkerja')->where('id_store', $id)->get();
+            $pegawai = Pegawai::with('store', 'shiftkerja', 'jabatan')->where('id_store', $id)->get();
         }
 
 
@@ -28,6 +29,7 @@ class PegawaiController extends Controller
             'pegawai' => $pegawai,
             'store' => $store,
             'shift' => $shift,
+            'jabatan' => Jabatan::all(),
         ];
         return view('admin.pegawai', compact('data'));
     }
@@ -68,6 +70,7 @@ class PegawaiController extends Controller
             $pegawai->id_store = $request->id_store;
             $pegawai->id_shiftkerja = $request->shift;
             $pegawai->foto = '';
+            $pegawai->id_jabatan = $request->jabatan;
             $pegawai->save();
             return redirect()->route('allpegawai')->with('success', 'Data Pegawai Berhasil Ditambahkan');
         }
@@ -97,6 +100,7 @@ class PegawaiController extends Controller
             $pegawai->tgl_masuk = $request->tgl_masuk;
             $pegawai->id_store = $request->id_store;
             $pegawai->id_shiftkerja = $request->shift;
+            $pegawai->id_jabatan = $request->jabatan;
             $pegawai->foto = '';
             $pegawai->update();
             return redirect()->route('allpegawai')->with('success', 'Data Pegawai Berhasil Diubah');

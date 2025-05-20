@@ -32,4 +32,10 @@ class Pegawai extends Model
     {
         return $this->belongsTo(Shiftkerja::class, 'id_shiftkerja');
     }
+
+
+    public function jabatan()
+    {
+        return $this->belongsTo(Jabatan::class, 'id_jabatan');
+    }
 }
