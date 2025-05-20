@@ -34,7 +34,7 @@
                                         </div>
                                         <div class="modal-body">
                                             <form class="form-material" method="post"
-                                                action="{{ route('pegawai.create') }}">
+                                                action="{{ route('pegawai.create') }}" enctype="multipart/form-data">
                                                 @csrf
                                                 <div class="form-group form-primary">
                                                     <input type="text" name="nama" class="form-control" required>
@@ -133,6 +133,14 @@
                                                     <label class="float-label">Alamat Pegawai</label>
                                                 </div>
 
+                                                <div class="form-group form-primary">
+                                                    <input class="form-control fill" name="foto" type="file"
+                                                        required />
+                                                    <span class="form-bar"></span>
+                                                    <label class="float-label">Foto </label>
+                                                    <small>Masukan foto pegawai dengan format gambar </small>
+                                                </div>
+
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
@@ -189,7 +197,8 @@
                                             <td>{{ $item->store->store }}</td>
                                             <td>{{ $item->shiftkerja->shiftkerja }}</td>
                                             <td>{{ $item->jabatan->jabatan }}</td>
-                                            <td>{{ $item->foto }}</td>
+                                            <td><img src="{{ asset('storage/' . $item->foto) }}" alt="Gambar"
+                                                    width="50"></td>
                                             <td>
                                                 <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
                                                     data-target="#exampleEdit{{ $item->id }}">
@@ -216,7 +225,8 @@
                                                             </div>
                                                             <div class="modal-body">
                                                                 <form class="form-material" method="post"
-                                                                    action="{{ route('pegawai.update', $item->id) }}">
+                                                                    action="{{ route('pegawai.update', $item->id) }}"
+                                                                    enctype="multipart/form-data">
                                                                     @csrf
                                                                     @method('PUT');
 
@@ -335,7 +345,14 @@
                                                                         <label class="float-label">Alamat Pegawai</label>
                                                                     </div>
 
-
+                                                                    <div class="form-group form-primary">
+                                                                        <input class="form-control fill" name="foto"
+                                                                            type="file" />
+                                                                        <span class="form-bar"></span>
+                                                                        <label class="float-label">Foto </label>
+                                                                        <small>Masukan foto pegawai dengan format gambar
+                                                                        </small>
+                                                                    </div>
 
                                                             </div>
                                                             <div class="modal-footer">
