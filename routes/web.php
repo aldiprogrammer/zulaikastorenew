@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\Dashboard;
 use App\Http\Controllers\admin\Kategori;
+use App\Http\Controllers\admin\LoginController;
 use App\Http\Controllers\admin\PegawaiController;
 use App\Http\Controllers\admin\PelangganController;
 use App\Http\Controllers\admin\StoreController;
@@ -14,8 +15,11 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+Route::get('/', [LoginController::class, 'index'])->name('login');
+Route::post('/', [LoginController::class, 'login'])->name('act_login');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::get('/', [Dashboard::class, 'index'])->name('dashboard');
+Route::get('/dashboard', [Dashboard::class, 'index'])->name('dashboard');
 Route::get('/kategori', [Kategori::class, 'index'])->name('kategori');
 Route::post('/kategori', [Kategori::class, 'create'])->name('kategori.create');
 Route::put('/kategori/{id}', [Kategori::class, 'update'])->name('kategori.update');
