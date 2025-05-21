@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\Dashboard;
 use App\Http\Controllers\admin\JabatanController;
+use App\Http\Controllers\admin\KasirController;
 use App\Http\Controllers\admin\Kategori;
 use App\Http\Controllers\admin\LoginController;
 use App\Http\Controllers\admin\PegawaiController;
@@ -68,4 +69,6 @@ Route::middleware([LoginMiddleware::class])->group(function () {
     Route::post('/jabatan', [JabatanController::class, 'create'])->name('jabatan.create');
     Route::put('/jabatan/{id}', [JabatanController::class, 'update'])->name('jabatan.update');
     Route::delete('/jabatan/{id}', [JabatanController::class, 'delete'])->name('jabatan.delete');
+
+    Route::get('/kasir', [KasirController::class, 'index'])->name('kasir');
 });
