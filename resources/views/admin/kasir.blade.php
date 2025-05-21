@@ -76,14 +76,19 @@
                                             <button class="btn btn-sm btn-primary w-100" style="border-radius: 10px">
                                                 <i class="bi bi-cart-plus"></i> <i class="fas fa-plus"></i> Tambah
                                             </button>
-                                    
                                     </div>
                                 </div>
                                 @endforeach
-
                             </div>
-                           
-                           
+                            <div class="d-flex justify-content-between align-items-center mt-4 flex-wrap gap-2">
+                                <div class="text-muted f-14">
+                                    Menampilkan {{ $data['produk']->firstItem() }} – {{ $data['produk']->lastItem() }} dari {{ $data['produk']->total() }} data
+                                </div>
+                                <div>
+                                    {{ $data['produk']->links('pagination::bootstrap-5') }}
+                                </div>
+                            </div>
+
                         </div>
                     </div>
 

@@ -12,7 +12,7 @@ class KasirController extends Controller
     {
         $data = [
             'title' => 'Kasir',
-            'produk' => Produk::all(),
+            'produk' => Produk::paginate(6),
             'jml_produk' => Produk::count(),
         ];
         return view('admin.kasir', compact('data'));
