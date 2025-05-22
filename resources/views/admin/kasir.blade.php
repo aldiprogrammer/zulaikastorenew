@@ -56,8 +56,15 @@
                         <div class="card-header">
                             <h5>Produk</h5>
                         </div>
+                         
                         <div class="card-body">
-                            <div class="row">
+                           
+
+                            <div class="row" >
+                                <main id="showproduk">
+                                    
+                                </main>
+                             
                                 @foreach ($data['produk'] as $product)
                                 <div class="col-sm-4">
                                     <div class="card shadow-sm" style="border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">

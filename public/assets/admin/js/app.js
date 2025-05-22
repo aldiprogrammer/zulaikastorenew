@@ -80,8 +80,7 @@ $(document).ready(function () {
             type: 'POST',
             data: formdata,
             success: function (response) {
-                console.log(response);
-
+                $("#showproduk").html(response)
             },
             error: function (xhr) {
                 console.log('error');
