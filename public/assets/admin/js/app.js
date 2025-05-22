@@ -63,7 +63,33 @@ $(document).ready(function () {
     });
 
 
+    $("#kodeproduk").keyup(function () {
+        var kode = $(this).val();
+        var formdata = {
+            'kode': kode
+        };
 
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $.ajax({
+            url: '/kasir',
+            type: 'POST',
+            data: formdata,
+            success: function (response) {
+                console.log(response);
+
+            },
+            error: function (xhr) {
+                console.log('error');
+
+            }
+        })
+
+    })
 
 
 

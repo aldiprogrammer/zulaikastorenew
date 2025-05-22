@@ -96,15 +96,25 @@
                 <div class="col-sm-6">
                     <div class="card">
                         <div class="card-body">
+                            <meta name="csrf-token" content="{{ csrf_token() }}">
                            <h5>KODE TRANSAKSI : #5545445</h5>
                             <hr />
                             <div class="form-group form-primary">
                                 <label class="float-label">Kode Produk</label>
-                                <input type="text" name="kategori" class="form-control" required>
+                                <input type="text" name="kategori" id="kodeproduk" class="form-control" required>
                                 <span class="form-bar"></span>
-                                
                             </div>
 
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div>
+                                <center>
+                                    <img src="{{ asset('assets/admin/images/loupe.png') }}" class="img-fluid" alt="serach" width="70">
+                                </center>
+                                <p class="text-center text-primary mt-2">Kode produk belum ditemukan</p>
+                            </div>
                         </div>
                     </div>
                 </div>

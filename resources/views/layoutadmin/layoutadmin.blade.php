@@ -205,7 +205,7 @@
                             <div class="pcoded-navigation-label">UI Element</div>
 
                             <ul class="pcoded-item pcoded-left-item">
-                                <li class=" {{ request()->is('kasrir') ? 'active' : '' }}">
+                                <li class=" {{ request()->is('kasir') ? 'active' : '' }}">
                                     <a href="/kasir" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="far fa-user-circle"></i><b></b></span>
                                         <span class="pcoded-mtext">Kasir</span>
