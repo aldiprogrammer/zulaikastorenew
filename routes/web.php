@@ -71,5 +71,6 @@ Route::middleware([LoginMiddleware::class])->group(function () {
     Route::delete('/jabatan/{id}', [JabatanController::class, 'delete'])->name('jabatan.delete');
 
     Route::get('/kasir', [KasirController::class, 'index'])->name('kasir');
-    Route::post('/kasir', [KasirController::class, 'create'])->name('kasir.crate');
+    Route::post('/kasir', [KasirController::class, 'create'])->name('kasir.create');
+    Route::delete('/hapusorder', [KasirController::class, 'delete'])->name('kasir.delete');
 });

@@ -65,8 +65,11 @@ $(document).ready(function () {
 
     $("#kodeproduk").keyup(function () {
         var kode = $(this).val();
+        var kode_tran = $("#kode").val();
+
         var formdata = {
-            'kode': kode
+            'kode': kode,
+            'kode_transaksi': kode_tran
         };
 
         $.ajaxSetup({
@@ -80,7 +83,9 @@ $(document).ready(function () {
             type: 'POST',
             data: formdata,
             success: function (response) {
-                $("#showproduk").html(response)
+                $("#showproduk").html(response.showproduk)
+                $("#pesan").html(response.pesan)
+                $("#listorder").html(response.listorder)
             },
             error: function (xhr) {
                 console.log('error');
@@ -90,6 +95,31 @@ $(document).ready(function () {
 
     })
 
+
+    $(document).on('click', '.hapus-list', function () {
+        var id = $(this).data('id');
+        let el = $(this).closest('.list-item');
+        var kode_tran = $("#kode").val();
+        if (confirm('Yakin ingin menghapus item ini?')) {
+            $.ajax({
+                url: '/hapusorder',
+                method: 'DELETE',
+                data: {
+                    _token: $('meta[name="csrf-token"]').attr('content'), // penting untuk Laravel
+                    id: id,
+                    kode_transaksi: kode_tran
+                },
+                success: function (res) {
+                    if (res.status) {
+                        alert(res.message);
+                        el.remove(); // hapus elemen dari tampilan
+                    } else {
+                        alert('Gagal menghapus data');
+                    }
+                }
+            });
+        }
+    });
 
 
 

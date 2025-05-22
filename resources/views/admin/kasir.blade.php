@@ -62,7 +62,23 @@
 
                             <div class="row" >
                                 <div id="showproduk"  class="col-sm-4">
-                                    
+                                    <div class="card shadow-sm" style="border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                                        
+                                        <img src="{{asset('assets/admin/images/imagereview.jpeg')}}" class="card-img-top" alt="" style="height: 180px; object-fit: cover;">
+
+                                        <div class="card-body">
+                                            <p class="card-title text-truncate text-center">No Produk<br />
+                                                <span for="" class="fw-bold badge badge-secondary"><b>No Kode</b></span>
+                                            </p>
+                                            <h6 class="text-secondary text-center">Rp {{ number_format(00000, 0, ',', '.') }}</h6>
+
+                                        </div>
+
+                                        <button class="btn btn-sm btn-secondary w-100" style="border-radius: 10px">
+                                            <i class="bi bi-cart-plus"></i> <i class="fas fa-plus"></i> Tambah
+                                        </button>
+                                    </div>
+
                                 </div>
                              
                                 @foreach ($data['produk'] as $product)
@@ -104,7 +120,8 @@
                     <div class="card">
                         <div class="card-body">
                             <meta name="csrf-token" content="{{ csrf_token() }}">
-                           <h5>KODE TRANSAKSI : #5545445</h5>
+                            <input type="text" name="kode" id="kode" class="form-control d-none" value="{{ $data['kode_tr'] }}" required readonly>
+                           <h5>KODE TRANSAKSI : #{{ $data['kode_tr'] }}</h5>
                             <hr />
                             <div class="form-group form-primary">
                                 <label class="float-label">Kode Produk</label>
@@ -116,11 +133,17 @@
                     </div>
                     <div class="card">
                         <div class="card-body">
-                            <div>
+                            <div id="listorder">
                                 <center>
                                     <img src="{{ asset('assets/admin/images/loupe.png') }}" class="img-fluid" alt="serach" width="70">
                                 </center>
-                                <p class="text-center text-primary mt-2">Kode produk belum ditemukan</p>
+                                <div id="pesan" style="font-weight: bold">
+                                    <p class="text-center text-primary mt-2">Kode produk belum ditemukan</p>
+                                </div>
+                              
+
+                               
+                                
                             </div>
                         </div>
                     </div>
