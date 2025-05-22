@@ -61,9 +61,9 @@
                            
 
                             <div class="row" >
-                                <main id="showproduk">
+                                <div id="showproduk"  class="col-sm-4">
                                     
-                                </main>
+                                </div>
                              
                                 @foreach ($data['produk'] as $product)
                                 <div class="col-sm-4">

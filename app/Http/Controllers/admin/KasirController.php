@@ -26,7 +26,7 @@ class KasirController extends Controller
         if ($cekproduk) {
             $html = '
     
-            <div class="col-sm-4">
+         
             <div class="card shadow-sm" style="border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
                 <div style="position: absolute;">
                     <span class="badge badge-success">Disc : ' . $cekproduk->diskon . '%</span>
@@ -42,13 +42,7 @@ class KasirController extends Controller
                 <button class="btn btn-sm btn-primary w-100" style="border-radius: 10px">
                     <i class="bi bi-cart-plus"></i> <i class="fas fa-plus"></i> Tambah
                 </button>
-            </div>
-            </div>
-           
-            
-            
-            
-            ';
+            </div>';
 
             echo $html;
         } else {
