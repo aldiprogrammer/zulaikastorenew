@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Pengguna;
 use App\Models\Penjualan;
 use App\Models\Produk;
 use Illuminate\Http\Request;
@@ -87,10 +88,13 @@ class KasirController extends Controller
                     ';
                 }
 
+                $total = Penjualan::where('kode_transaksi', $request->kode_transaksi)->sum('total');
                 return response()->json([
                     'showproduk' => $html,
                     'pesan' =>  '<p class="text-center text-success mt-2 fw-bold">Produk dengan Kode : ' . $kode . ' berhasil ditemukan</p>',
                     'listorder' => $listorder,
+                    'totalharga' => '<h5>Total : ' . number_format($total, '0', '.') . '</h5>',
+                    'formtotal' => $total,
                 ]);
             }
         } elseif ($cekproduk == false || $kode == '') {
@@ -119,10 +123,18 @@ class KasirController extends Controller
     function delete(Request $request)
     {
         $id = $request->id;
+        $kode = $request->kode_transaksi;
+
         $pen = Penjualan::find($id);
         $hapus = $pen->delete();
         if ($hapus) {
-            return response()->json(['status' => true, 'message' => 'Data berhasil dihapus']);
+            $total = Penjualan::where('kode_transaksi', $kode)->sum('total');
+            return response()->json([
+                'status' => true,
+                'message' => 'Data berhasil dihapus',
+                'total' => '<h5>Total : ' . number_format($total, '0', '.') . '</h5>',
+                'formtotal' => $total,
+            ]);
         } else {
             return response()->json(['status' => false, 'message' => 'Gagal menghapus data']);
         }

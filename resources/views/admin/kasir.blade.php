@@ -96,8 +96,8 @@
                                           
                                         </div>
                                         
-                                            <button class="btn btn-sm btn-primary w-100" style="border-radius: 10px">
-                                                <i class="bi bi-cart-plus"></i> <i class="fas fa-plus"></i> Tambah
+                                            <button class="btn btn-sm btn-primary w-100 tambah-pesanan" data-kode="{{ $product->kode_produk }}" style="border-radius: 10px">
+                                                <i class="bi bi-cart-plus"></i> <i class="fas fa-plus"></i> Tambah pesanan
                                             </button>
                                     </div>
                                 </div>
@@ -131,22 +131,72 @@
 
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="card-body">
+                    <div class="card" >
+                        <div class="card-footer">
+                            <h5>List order</h5>
+                        </div>
+                        <div class="card-body" style="height: 200px; overflow-y: auto;">
                             <div id="listorder">
                                 <center>
                                     <img src="{{ asset('assets/admin/images/loupe.png') }}" class="img-fluid" alt="serach" width="70">
                                 </center>
                                 <div id="pesan" style="font-weight: bold">
-                                    <p class="text-center text-primary mt-2">Kode produk belum ditemukan</p>
+                                    <p class="text-center text-primary mt-2">List order belum tersedia</p>
                                 </div>
-                              
-
-                               
-                                
                             </div>
                         </div>
+                        <hr />
+                        <div class="card-footer">
+                          <div id="totalharga"></div>
+                          <div class="row">
+                            <div class="mb-3 col">
+                                <label for="exampleInputEmail1" class="form-label">Total Bayar</label>
+                                
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="basic-addon1">Rp</span>
+                                    <input type="number" class="form-control" id="formtotal" style="font-weight: bold">
+                                </div>
+
+                                <input type="text" class="form-control d-none" id="formtotal2" aria-describedby="emailHelp">
+
+                            </div>
+
+                            <div class="mb-3 col">
+                                <label for="exampleInputEmail1" class="form-label">Diskon</label>
+                                <div class="input-group mb-3">
+                                    <input type="number" class="form-control" id="diskon">
+                                    <span class="input-group-text" id="basic-addon2">%</span>
+                                </div>
+
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="mb-3 col">
+                                <label for="exampleInputEmail1" class="form-label">Uang</label>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="basic-addon1">Rp</span>
+                                    <input type="number" class="form-control" id="uang"  style="font-weight: bold">
+                                </div>
+                            </div>
+
+                            <div class="mb-3 col">
+                                <label for="exampleInputEmail1" class="form-label">Kembalian</label>
+
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="basic-addon1">Rp</span>
+                                    <input type="text" class="form-control" id="kembalian" readonly style="font-weight: bold" >
+                                </div>
+
+                            </div>
+                          </div>
+                          <button class="btn btn-primary w-100"><i class="fas fa-print"></i>CETAK STRUK</button>
+
+                          
+
+                        </div>
                     </div>
+              
+
                 </div>
             </div>
             

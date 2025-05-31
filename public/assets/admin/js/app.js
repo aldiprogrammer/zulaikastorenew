@@ -86,6 +86,11 @@ $(document).ready(function () {
                 $("#showproduk").html(response.showproduk)
                 $("#pesan").html(response.pesan)
                 $("#listorder").html(response.listorder)
+                $("#totalharga").html('hello')
+                $("#formtotal").val(response.formtotal);
+                $("#formtotal2").val(response.formtotal);
+
+
             },
             error: function (xhr) {
                 console.log('error');
@@ -93,6 +98,40 @@ $(document).ready(function () {
             }
         })
 
+    });
+
+    $(".tambah-pesanan").click(function () {
+        var kode = $(this).data('kode');
+        var kode_tran = $("#kode").val();
+
+        var formdata = {
+            'kode': kode,
+            'kode_transaksi': kode_tran
+        };
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $.ajax({
+            url: '/kasir',
+            type: 'POST',
+            data: formdata,
+            success: function (response) {
+                $("#showproduk").html(response.showproduk)
+                $("#pesan").html(response.pesan)
+                $("#listorder").html(response.listorder)
+                $("#totalharga").html(response.totalharga)
+                $("#formtotal").val(response.formtotal);
+                $("#formtotal2").val(response.formtotal);
+            },
+
+            error: function (err) {
+                console.log('error');
+            }
+        })
     })
 
 
@@ -112,6 +151,14 @@ $(document).ready(function () {
                 success: function (res) {
                     if (res.status) {
                         alert(res.message);
+                        $("#totalharga").html(res.total)
+                        $("#formtotal").val(res.formtotal);
+                        $("#formtotal2").val(res.formtotal);
+                        if (res.total == '<h5>Total : 0</h5>') {
+                            $("#listorder").html
+                                (' <center><h5 class="text-danger fw-bol">Oops!</h5></centere><h6 class="text-center text-primary fw-bold mt-2">List order belum tersedia</h6>');
+                        }
+
                         el.remove(); // hapus elemen dari tampilan
                     } else {
                         alert('Gagal menghapus data');
@@ -121,6 +168,28 @@ $(document).ready(function () {
         }
     });
 
+
+    $("#diskon").keyup(function () {
+
+        var totalharga = $("#formtotal2").val();
+        var diskon = $(this).val();
+
+        var potong = totalharga * diskon / 100;
+        var harga = totalharga - potong;
+        $("#formtotal").val(harga);
+    })
+
+    $("#uang").keyup(function () {
+        var totalharga = $("#formtotal").val();
+        var uang = $(this).val();
+        if (Number(uang) < Number(totalharga)) {
+            $("#kembalian").val(0);
+        } else {
+            var km = uang - totalharga;
+            $("#kembalian").val(km);
+        }
+
+    })
 
 
 })

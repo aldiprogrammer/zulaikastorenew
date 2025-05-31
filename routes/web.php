@@ -12,6 +12,7 @@ use App\Http\Controllers\admin\PenggunaController;
 use App\Http\Controllers\admin\PenjualanController;
 use App\Http\Controllers\admin\ProdukController;
 use App\Http\Controllers\admin\ShifkerjaController;
+use App\Http\Controllers\Chet;
 use App\Http\Middleware\LoginMiddleware;
 use Illuminate\Support\Facades\Route;
 
@@ -73,4 +74,8 @@ Route::middleware([LoginMiddleware::class])->group(function () {
     Route::get('/kasir', [KasirController::class, 'index'])->name('kasir');
     Route::post('/kasir', [KasirController::class, 'create'])->name('kasir.create');
     Route::delete('/hapusorder', [KasirController::class, 'delete'])->name('kasir.delete');
+
+    Route::get('/chet1', [Chet::class, 'index'])->name('chet1');
+    Route::get('/chet2', [Chet::class, 'chet2'])->name('chet2');
+    Route::post('/kirim', [Chet::class, 'kirim'])->name('kirim');
 });
